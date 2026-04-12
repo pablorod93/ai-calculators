@@ -4,10 +4,38 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "CalcHub - Free Online Calculators",
+  title: {
+    default: "AI Calculators — Free Tools for Developers & Businesses",
+    template: "%s | AICalculators.org",
+  },
   description:
-    "Free online calculators for AI costs, tokens, and more. Compare pricing across OpenAI, Anthropic, Google, and other AI providers.",
-  keywords: ["AI calculator", "token cost", "LLM pricing", "OpenAI pricing", "Claude pricing", "GPT cost"],
+    "Free online calculators for AI token costs, LLM pricing, and more. Compare OpenAI, Anthropic, Google, Meta, Mistral, Cohere, and DeepSeek models side by side.",
+  keywords: [
+    "AI calculator", "token cost calculator", "LLM pricing", "OpenAI pricing",
+    "Claude pricing", "GPT cost", "Gemini pricing", "AI API cost", "compare AI models",
+  ],
+  metadataBase: new URL("https://aicalculators.org"),
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "https://aicalculators.org",
+    siteName: "AICalculators.org",
+    title: "AI Calculators — Free Tools for Developers & Businesses",
+    description:
+      "Compare AI model pricing across OpenAI, Anthropic, Google, and more. Estimate token costs instantly.",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Calculators — Free Tools for Developers & Businesses",
+    description:
+      "Compare AI model pricing across OpenAI, Anthropic, Google, and more. Estimate token costs instantly.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 };
 
 export default function RootLayout({
