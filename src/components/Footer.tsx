@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-gray-50 border-t border-gray-200 mt-auto">
@@ -6,8 +8,16 @@ export default function Footer() {
           <div className="text-gray-500 text-sm">
             &copy; {new Date().getFullYear()} AICalculators.org. All rights reserved.
           </div>
-          <div className="text-gray-400 text-xs">
-            Prices are approximate and may change. Always verify with the provider.
+          <div className="flex items-center gap-6">
+            <Link href="/about" className="text-gray-400 hover:text-gray-600 text-sm transition-colors">
+              About
+            </Link>
+            <Link href="/privacy" className="text-gray-400 hover:text-gray-600 text-sm transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-gray-300 text-xs hidden md:inline">
+              Prices are approximate. Always verify with the provider.
+            </span>
           </div>
         </div>
       </div>
