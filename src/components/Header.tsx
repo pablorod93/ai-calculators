@@ -17,9 +17,9 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">CH</span>
+              <span className="text-white font-bold text-sm">AI</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">CalcHub</span>
+            <span className="text-xl font-bold text-gray-900">AICalculators</span>
           </Link>
 
           {/* Desktop nav */}
