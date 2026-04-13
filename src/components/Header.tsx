@@ -5,7 +5,13 @@ import { useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/ai-cost-calculator", label: "AI Cost Calculator" },
+  { href: "/ai-cost-calculator", label: "AI Tokens" },
+  { href: "/ai-project-estimator", label: "AI Projects" },
+  { href: "/mortgage-calculator", label: "Mortgage" },
+  { href: "/roi-calculator", label: "ROI" },
+  { href: "/business-acquisition-calculator", label: "Business" },
+  { href: "/compound-interest-calculator", label: "Interest" },
+  { href: "/loan-amortization-calculator", label: "Loans" },
 ];
 
 export default function Header() {
