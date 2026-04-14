@@ -1,18 +1,84 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/ai-cost-calculator", label: "AI Tokens" },
-  { href: "/ai-project-estimator", label: "AI Projects" },
-  { href: "/mortgage-calculator", label: "Mortgage" },
-  { href: "/roi-calculator", label: "ROI" },
-  { href: "/business-acquisition-calculator", label: "Business" },
-  { href: "/compound-interest-calculator", label: "Interest" },
-  { href: "/loan-amortization-calculator", label: "Loans" },
+interface NavGroup {
+  label: string;
+  links: { href: string; label: string }[];
+}
+
+const navGroups: NavGroup[] = [
+  {
+    label: "AI Calculators",
+    links: [
+      { href: "/ai-cost-calculator", label: "AI Token Costs" },
+      { href: "/ai-project-estimator", label: "AI Project Estimator" },
+      { href: "/ai-image-calculator", label: "Image Generation" },
+      { href: "/ai-fine-tuning-calculator", label: "Fine-Tuning Costs" },
+      { href: "/gpu-cost-calculator", label: "GPU Pricing" },
+    ],
+  },
+  {
+    label: "Financial",
+    links: [
+      { href: "/mortgage-calculator", label: "Mortgage" },
+      { href: "/mortgage-refinance-calculator", label: "Refinance" },
+      { href: "/roi-calculator", label: "ROI" },
+      { href: "/business-acquisition-calculator", label: "Business Acquisition" },
+      { href: "/compound-interest-calculator", label: "Compound Interest" },
+      { href: "/loan-amortization-calculator", label: "Loan Amortization" },
+    ],
+  },
 ];
+
+function DesktopDropdown({ group }: { group: NavGroup }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="text-gray-600 hover:text-gray-900 font-medium transition-colors flex items-center gap-1"
+      >
+        {group.label}
+        <svg
+          className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {open && (
+        <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-200 rounded-xl shadow-lg py-2 z-50">
+          {group.links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors"
+              onClick={() => setOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,15 +96,21 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-              >
-                {link.label}
-              </Link>
+            <Link
+              href="/"
+              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+            >
+              Home
+            </Link>
+            {navGroups.map((group) => (
+              <DesktopDropdown key={group.label} group={group} />
             ))}
+            <Link
+              href="/blog"
+              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+            >
+              Blog
+            </Link>
           </nav>
 
           {/* Mobile menu button */}
@@ -60,16 +132,37 @@ export default function Header() {
         {/* Mobile nav */}
         {menuOpen && (
           <nav className="md:hidden py-4 border-t border-gray-100">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block py-2 text-gray-600 hover:text-gray-900 font-medium"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
+            <Link
+              href="/"
+              className="block py-2 text-gray-600 hover:text-gray-900 font-medium"
+              onClick={() => setMenuOpen(false)}
+            >
+              Home
+            </Link>
+            {navGroups.map((group) => (
+              <div key={group.label} className="mt-3">
+                <div className="text-xs font-semibold text-gray-400 uppercase tracking-wide px-0 mb-1">
+                  {group.label}
+                </div>
+                {group.links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="block py-2 pl-3 text-gray-600 hover:text-gray-900 font-medium"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             ))}
+            <Link
+              href="/blog"
+              className="block py-2 mt-3 text-gray-600 hover:text-gray-900 font-medium border-t border-gray-100 pt-3"
+              onClick={() => setMenuOpen(false)}
+            >
+              Blog
+            </Link>
           </nav>
         )}
       </div>

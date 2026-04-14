@@ -48,6 +48,18 @@ const calculators = [
     available: true,
   },
   {
+    title: "Mortgage Refinance Calculator",
+    description:
+      "Should you refinance? Compare your current loan vs a new one. See breakeven timeline, monthly savings, and a decision scorecard.",
+    href: "/mortgage-refinance-calculator",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+      </svg>
+    ),
+    available: true,
+  },
+  {
     title: "ROI Calculator",
     description:
       "Calculate return on investment, annualized returns, and breakeven timeline. Compare up to 4 scenarios.",
@@ -91,6 +103,42 @@ const calculators = [
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+      </svg>
+    ),
+    available: true,
+  },
+  {
+    title: "AI Image Generation Cost Calculator",
+    description:
+      "Compare costs for AI image generation across DALL-E, Stable Diffusion, Flux, Midjourney, and Imagen.",
+    href: "/ai-image-calculator",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a2.25 2.25 0 002.25-2.25V5.25a2.25 2.25 0 00-2.25-2.25H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+      </svg>
+    ),
+    available: true,
+  },
+  {
+    title: "AI Fine-Tuning Cost Calculator",
+    description:
+      "Estimate fine-tuning costs for GPT-4o, Llama, Mistral, and more. Compare LoRA vs full fine-tuning and total cost of ownership.",
+    href: "/ai-fine-tuning-calculator",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+      </svg>
+    ),
+    available: true,
+  },
+  {
+    title: "GPU Cost Calculator",
+    description:
+      "Compare GPU rental costs across AWS, GCP, Azure, Lambda Labs, and more. Cloud vs on-premise break-even analysis.",
+    href: "/gpu-cost-calculator",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" />
       </svg>
     ),
     available: true,
@@ -145,6 +193,41 @@ export default function Home() {
             )}
           </div>
         ))}
+      </div>
+
+      {/* From the Blog */}
+      <div className="mt-16">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">From the Blog</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Link
+            href="/blog/how-to-estimate-ai-api-costs"
+            className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-lg transition-all group"
+          >
+            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
+              Guides
+            </span>
+            <h3 className="text-lg font-semibold text-gray-900 mt-3 mb-2 group-hover:text-blue-700 transition-colors">
+              How to Estimate AI API Costs for Your Project
+            </h3>
+            <p className="text-gray-600 text-sm">
+              Token counting, usage patterns, and cost optimization strategies to budget your AI spend.
+            </p>
+          </Link>
+          <Link
+            href="/blog/when-to-refinance-your-mortgage"
+            className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-lg transition-all group"
+          >
+            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-green-100 text-green-700">
+              Financial
+            </span>
+            <h3 className="text-lg font-semibold text-gray-900 mt-3 mb-2 group-hover:text-blue-700 transition-colors">
+              When Should You Refinance Your Mortgage?
+            </h3>
+            <p className="text-gray-600 text-sm">
+              The 1% rule, breakeven analysis, and a decision checklist for refinancing.
+            </p>
+          </Link>
+        </div>
       </div>
     </div>
   );

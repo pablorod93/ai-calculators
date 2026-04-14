@@ -8,6 +8,37 @@ import CostBreakdown from "@/components/CostBreakdown";
 import ModelComparison from "@/components/ModelComparison";
 import TokenExplainer from "@/components/TokenExplainer";
 import AdBanner from "@/components/AdBanner";
+import FAQSection from "@/components/FAQSection";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import JsonLd from "@/components/JsonLd";
+
+const faqs = [
+  {
+    question: "What is an AI token and how is it counted?",
+    answer:
+      "A token is a chunk of text that AI models process. In English, 1 token is roughly 4 characters or 3/4 of a word. A 500-word email is about 675 tokens. Both input (your prompt) and output (the response) are counted separately.",
+  },
+  {
+    question: "Why do output tokens cost more than input tokens?",
+    answer:
+      "Output tokens cost 2-5x more because generating new text requires running the model one token at a time (sequential processing), while input tokens can be processed in parallel. More computation per token means higher cost.",
+  },
+  {
+    question: "What is the cheapest AI model for production use?",
+    answer:
+      "GPT-4o mini ($0.15/M input), Gemini 2.0 Flash ($0.10/M input), and GPT-4.1 nano ($0.10/M input) are the most affordable options that still deliver good quality for most tasks.",
+  },
+  {
+    question: "How do batch APIs reduce AI costs?",
+    answer:
+      "Batch APIs process requests asynchronously (typically within 24 hours) instead of in real-time. This lets providers optimize compute usage, passing savings of up to 50% to you. Ideal for non-time-sensitive tasks.",
+  },
+  {
+    question: "How many tokens does a typical chatbot conversation use?",
+    answer:
+      "A typical chatbot turn uses about 500 input tokens and 300 output tokens. A full conversation of 10 messages might use 5,000-8,000 total tokens, costing $0.003-$0.06 depending on the model.",
+  },
+];
 
 export default function AICostCalculator() {
   const [selectedModels, setSelectedModels] = useState<AIModel[]>([
@@ -35,6 +66,27 @@ export default function AICostCalculator() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          name: "AI Token Cost Calculator",
+          url: "https://aicalculators.org/ai-cost-calculator",
+          applicationCategory: "FinanceApplication",
+          operatingSystem: "Web",
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          description:
+            "Calculate and compare AI API costs for GPT-4o, Claude, Gemini, Llama, and 27+ models.",
+          featureList:
+            "Compare 27+ AI models, batch pricing, daily/monthly/yearly projections",
+        }}
+      />
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "AI Token Cost Calculator", href: "/ai-cost-calculator" },
+        ]}
+      />
       {/* Page header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -122,6 +174,11 @@ export default function AICostCalculator() {
             />
           </div>
         </div>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="bg-white border border-gray-200 rounded-xl p-5 mt-8">
+        <FAQSection faqs={faqs} />
       </div>
 
       <AdBanner className="mt-8" />

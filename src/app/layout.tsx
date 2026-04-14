@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: {
@@ -71,6 +72,21 @@ export default function RootLayout({
         */}
       </head>
       <body className="min-h-screen flex flex-col bg-white text-gray-900 antialiased">
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "AICalculators.org",
+            url: "https://aicalculators.org",
+            description:
+              "Free online calculators for AI costs, financial planning, and more.",
+            publisher: {
+              "@type": "Organization",
+              name: "AICalculators.org",
+              url: "https://aicalculators.org",
+            },
+          }}
+        />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
