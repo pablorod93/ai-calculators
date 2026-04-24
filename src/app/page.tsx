@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AdBanner from "@/components/AdBanner";
 
 const calculators = [
   {
@@ -194,6 +195,8 @@ export default function Home() {
           </div>
         ))}
       </div>
+
+      <AdBanner className="mt-12" />
 
       {/* From the Blog */}
       <div className="mt-16">

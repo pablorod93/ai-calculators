@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AdBanner from "@/components/AdBanner";
 import { getCategoryLabel, getCategoryColor, type BlogPost } from "@/data/blog-posts";
 
 interface BlogLayoutProps {
@@ -62,6 +63,8 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
       <article className="prose prose-gray max-w-none prose-headings:text-gray-900 prose-a:text-blue-600 prose-img:rounded-xl prose-pre:bg-gray-50 prose-pre:border prose-pre:border-gray-200">
         {children}
       </article>
+
+      <AdBanner className="mt-10 mb-4" />
 
       {/* Related calculator CTA */}
       {post.relatedCalculator && (

@@ -9,7 +9,9 @@ interface AdBannerProps {
 export default function AdBanner({ slot, format = "auto", className = "" }: AdBannerProps) {
   const isProduction = typeof window !== "undefined" && window.location.hostname !== "localhost";
 
-  if (!isProduction || !slot) {
+  if (!slot) return null;
+
+  if (!isProduction) {
     return (
       <div
         className={`bg-gray-100 border border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-400 text-sm ${className}`}
