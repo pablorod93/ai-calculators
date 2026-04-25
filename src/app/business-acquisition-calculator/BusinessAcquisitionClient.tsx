@@ -384,6 +384,20 @@ export default function BusinessAcquisitionClient() {
 
       <AdBanner className="mt-8" />
       <div className="mt-10 space-y-8">
+        <details className="border border-gray-200 rounded-xl overflow-hidden group">
+          <summary className="flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-gray-50 transition-colors list-none">
+            <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">How This Calculator Works</h2>
+            <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div className="px-5 pb-5 pt-2 text-sm text-gray-600 space-y-3">
+            <p><strong>Monthly SBA loan payment</strong> uses the standard amortization formula with your loan amount (purchase price − down payment), interest rate, and term.</p>
+            <p><strong>DSCR (Debt Service Coverage Ratio)</strong> — the primary metric lenders use to approve business acquisition loans:</p>
+            <pre className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-xs overflow-x-auto">DSCR = Annual Net Operating Income / Annual Debt Service</pre>
+            <p>Most SBA lenders require DSCR ≥ 1.25. Below 1.0 means the business cannot cover its own loan payments from operations.</p>
+            <p><strong>SDE Multiple</strong> = Purchase Price / SDE. This is the most common small business valuation metric. Typical multiples: 2–4× for service businesses, 3–5× for online businesses with recurring revenue, 1.5–2.5× for retail and restaurants.</p>
+            <p><strong>Cash-on-cash return</strong> = Annual Cash Flow After Debt Service / Down Payment. This measures your actual return on the cash you invested, similar to how real estate investors evaluate rental properties.</p>
+          </div>
+        </details>
         <FAQSection faqs={[
           { question: "What is DSCR and why does it matter for SBA loans?", answer: "DSCR (Debt Service Coverage Ratio) measures whether a business generates enough cash flow to cover its loan payments. DSCR = Annual Net Operating Income / Annual Debt Service. Most SBA lenders require a minimum DSCR of 1.25, meaning the business earns 25% more than needed to cover payments. Below 1.0 means the business can't cover its debt from operations alone." },
           { question: "What SBA loan programs are available for buying a business?", answer: "The SBA 7(a) loan is the most common for business acquisitions — up to $5M, 10-year terms, and rates typically Prime + 2.75%. The SBA 504 loan is used for real estate and equipment. Both require as little as 10% down. Non-US citizens may face restrictions on SBA financing; check with an SBA-approved lender." },

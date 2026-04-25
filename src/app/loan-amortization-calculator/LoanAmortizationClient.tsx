@@ -361,6 +361,20 @@ export default function LoanAmortizationClient() {
 
       <AdBanner className="mt-8" />
       <div className="mt-10 space-y-8">
+        <details className="border border-gray-200 rounded-xl overflow-hidden group">
+          <summary className="flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-gray-50 transition-colors list-none">
+            <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">How This Calculator Works</h2>
+            <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div className="px-5 pb-5 pt-2 text-sm text-gray-600 space-y-3">
+            <p><strong>Monthly payment formula:</strong></p>
+            <pre className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-xs overflow-x-auto">M = P × [r(1+r)ⁿ] / [(1+r)ⁿ − 1]</pre>
+            <p>Where <strong>P</strong> = loan amount, <strong>r</strong> = monthly rate (annual ÷ 12), <strong>n</strong> = total payments.</p>
+            <p><strong>Each month&apos;s breakdown:</strong> Interest = remaining balance × monthly rate. Principal = payment − interest. This is why early payments are mostly interest — the balance is highest, so interest charges are highest.</p>
+            <p><strong>Extra payments</strong> reduce the balance directly, which lowers next month&apos;s interest charge. This accelerates the principal paydown compounding — each dollar of extra payment saves more than one dollar of future interest.</p>
+            <p><strong>Payoff date with extra payments</strong> is recalculated month-by-month: once the remaining balance drops below the regular payment amount, the final payment is just that remaining balance plus one month of interest.</p>
+          </div>
+        </details>
         <FAQSection faqs={[
           { question: "What is loan amortization?", answer: "Amortization is the process of spreading loan payments over time. Each payment covers both interest and principal. Early payments are mostly interest; later payments are mostly principal. An amortization schedule shows the exact breakdown for every payment over the life of your loan." },
           { question: "Why do I pay more interest at the start of my loan?", answer: "Because interest is calculated on the remaining balance. Early on, your balance is highest, so more of each payment goes to interest. As you pay down principal, the balance drops and interest charges shrink. This is why the first years of a mortgage feel like you're barely making a dent." },

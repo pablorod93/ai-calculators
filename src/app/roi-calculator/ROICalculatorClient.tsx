@@ -260,6 +260,20 @@ export default function ROICalculatorClient() {
 
       <AdBanner className="mt-8" />
       <div className="mt-10 space-y-8">
+        <details className="border border-gray-200 rounded-xl overflow-hidden group">
+          <summary className="flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-gray-50 transition-colors list-none">
+            <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">How This Calculator Works</h2>
+            <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div className="px-5 pb-5 pt-2 text-sm text-gray-600 space-y-3">
+            <p><strong>Simple ROI</strong> measures total return as a percentage of the initial investment:</p>
+            <pre className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-xs overflow-x-auto">ROI = (Final Value − Initial Investment) / Initial Investment × 100</pre>
+            <p><strong>Annualized ROI</strong> (also called CAGR — Compound Annual Growth Rate) adjusts for time, making investments of different durations comparable:</p>
+            <pre className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-xs overflow-x-auto">Annualized ROI = (Final Value / Initial Investment)^(1 / years) − 1</pre>
+            <p>Example: a 50% simple ROI over 5 years = only 8.4% annualized. The same 50% over 1 year = 50% annualized. Always compare using annualized ROI across different time horizons.</p>
+            <p><strong>Breakeven</strong> is estimated by linear interpolation: monthly return = total return ÷ months, then breakeven = initial investment ÷ monthly return.</p>
+          </div>
+        </details>
         <FAQSection faqs={[
           { question: "What is a good ROI percentage?", answer: "A 'good' ROI depends heavily on context. Stock market investments average ~10%/year. Real estate typically returns 8%–12% annually. Business investments vary widely. For comparison purposes, use the annualized ROI this calculator provides, not just the simple percentage, especially for multi-year investments." },
           { question: "What's the difference between simple ROI and annualized ROI?", answer: "Simple ROI = (Net Profit / Cost) × 100. Annualized ROI adjusts for the time period using compound interest math, making investments of different durations comparable. A 50% ROI over 5 years is only about 8.4%/year annualized — very different from 50% in one year." },

@@ -374,6 +374,19 @@ export default function MortgageCalculatorClient() {
 
       <AdBanner className="mt-8" />
       <div className="mt-10 space-y-8">
+        <details className="border border-gray-200 rounded-xl overflow-hidden group">
+          <summary className="flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-gray-50 transition-colors list-none">
+            <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">How This Calculator Works</h2>
+            <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div className="px-5 pb-5 pt-2 text-sm text-gray-600 space-y-3">
+            <p><strong>Principal &amp; Interest (P&amp;I) formula:</strong></p>
+            <pre className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-xs overflow-x-auto">M = P × [r(1+r)ⁿ] / [(1+r)ⁿ − 1]</pre>
+            <p>Where <strong>P</strong> = loan amount, <strong>r</strong> = monthly interest rate (annual rate ÷ 12), <strong>n</strong> = total number of payments (years × 12).</p>
+            <p>Your total monthly payment (PITI) adds property tax, homeowners insurance, and PMI (if down payment &lt; 20%) on top of P&amp;I. PMI is estimated at 0.5% of the loan amount annually and can be removed once you reach 20% equity.</p>
+            <p><strong>Total interest paid</strong> = (Monthly P&amp;I × total payments) − loan amount. This is why a 30-year mortgage at 6.5% on a $300,000 loan costs over $380,000 in total payments — more than double the original loan.</p>
+          </div>
+        </details>
         <FAQSection faqs={faqs} />
         <RelatedCalculators items={relatedCalculators} />
       </div>

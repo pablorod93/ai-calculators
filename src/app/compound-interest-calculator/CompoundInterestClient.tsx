@@ -325,6 +325,20 @@ export default function CompoundInterestClient() {
 
       <AdBanner className="mt-8" />
       <div className="mt-10 space-y-8">
+        <details className="border border-gray-200 rounded-xl overflow-hidden group">
+          <summary className="flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-gray-50 transition-colors list-none">
+            <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">How This Calculator Works</h2>
+            <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div className="px-5 pb-5 pt-2 text-sm text-gray-600 space-y-3">
+            <p><strong>Compound interest formula</strong> (without contributions):</p>
+            <pre className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-xs overflow-x-auto">A = P × (1 + r/n)^(n×t)</pre>
+            <p>Where <strong>P</strong> = principal, <strong>r</strong> = annual interest rate, <strong>n</strong> = compounding periods per year, <strong>t</strong> = years.</p>
+            <p><strong>With regular contributions</strong>, each contribution is treated as its own compound interest series and summed. For monthly contributions C:</p>
+            <pre className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-xs overflow-x-auto">A = P×(1+r/n)^(nt) + C×[(1+r/n)^(nt) − 1] / (r/n)</pre>
+            <p><strong>Inflation adjustment:</strong> the real value is calculated by deflating the nominal balance by the inflation rate each year: Real Value = Nominal Balance / (1 + inflation)^t.</p>
+          </div>
+        </details>
         <FAQSection faqs={[
           { question: "What is compound interest?", answer: "Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. Unlike simple interest (which only earns on the principal), compound interest causes your money to grow exponentially. Einstein reportedly called it the 'eighth wonder of the world.'" },
           { question: "How does compounding frequency affect growth?", answer: "More frequent compounding = more growth. $10,000 at 8% for 10 years: annual compounding → $21,589; monthly compounding → $22,196; daily compounding → $22,253. The difference grows larger with higher rates and longer time horizons. Most savings accounts and investments compound monthly or daily." },

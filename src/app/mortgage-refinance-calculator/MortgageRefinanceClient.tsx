@@ -638,6 +638,18 @@ export default function MortgageRefinanceClient() {
 
       <AdBanner className="mt-8" />
       <div className="mt-10 space-y-8">
+        <details className="border border-gray-200 rounded-xl overflow-hidden group">
+          <summary className="flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-gray-50 transition-colors list-none">
+            <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">How This Calculator Works</h2>
+            <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div className="px-5 pb-5 pt-2 text-sm text-gray-600 space-y-3">
+            <p><strong>Monthly savings</strong> = current monthly payment − new monthly payment (both calculated using the standard amortization formula with your respective rates and remaining terms).</p>
+            <pre className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-xs overflow-x-auto">Breakeven months = Closing costs ÷ Monthly savings</pre>
+            <p>If your breakeven is under 36 months and you plan to stay in the home, refinancing almost always makes sense. Over 60 months, run the numbers carefully.</p>
+            <p><strong>Total interest comparison</strong> is calculated by summing all future interest payments on both the current loan (remaining term) and the proposed refinanced loan. This accounts for term extensions — refinancing into a new 30-year loan when you have 20 years left will show a higher total cost even if the monthly payment drops.</p>
+          </div>
+        </details>
         <FAQSection faqs={[
           { question: "What is the breakeven point for refinancing?", answer: "The breakeven point is when your cumulative monthly savings equal your closing costs. For example, if refinancing costs $4,000 and saves you $200/month, you break even in 20 months. This calculator shows your exact breakeven timeline based on your inputs." },
           { question: "Is the 1% rule for refinancing still valid?", answer: "The traditional rule says refinancing makes sense if you can lower your rate by at least 1%. While still a useful starting point, a more precise approach is to calculate your actual breakeven period and compare it to how long you plan to stay in the home. Even a 0.5% reduction can make sense if closing costs are low." },

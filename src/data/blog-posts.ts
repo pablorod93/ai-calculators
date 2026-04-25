@@ -101,6 +101,81 @@ export const blogPosts: BlogPost[] = [
       href: "/mortgage-refinance-calculator",
     },
   },
+  {
+    slug: "how-to-finance-a-business-acquisition",
+    title: "How to Buy a Business with an SBA Loan: A Complete Guide",
+    description:
+      "Everything you need to know about financing a small business acquisition with SBA 7(a) loans, seller financing, DSCR requirements, and cash-on-cash return targets.",
+    publishedAt: "2026-04-23",
+    updatedAt: null,
+    category: "financial",
+    tags: ["business acquisition", "SBA loan", "DSCR", "small business", "seller financing"],
+    readingTimeMinutes: 9,
+    relatedCalculator: {
+      title: "Business Acquisition Calculator",
+      href: "/business-acquisition-calculator",
+    },
+  },
+  {
+    slug: "how-compound-interest-works",
+    title: "How Does Compound Interest Work? A Plain-English Guide",
+    description:
+      "Compound interest explained with real numbers: the formula, compounding frequency, the Rule of 72, and why starting early beats investing more later.",
+    publishedAt: "2026-04-23",
+    updatedAt: null,
+    category: "financial",
+    tags: ["compound interest", "savings", "investing", "Rule of 72", "APY"],
+    readingTimeMinutes: 6,
+    relatedCalculator: {
+      title: "Compound Interest Calculator",
+      href: "/compound-interest-calculator",
+    },
+  },
+  {
+    slug: "loan-amortization-schedule-explained",
+    title: "Loan Amortization Schedule Explained",
+    description:
+      "Why your early mortgage payments are mostly interest, how an amortization schedule works, and how extra payments can save you years and thousands of dollars.",
+    publishedAt: "2026-04-23",
+    updatedAt: null,
+    category: "financial",
+    tags: ["loan amortization", "mortgage", "interest", "extra payments", "debt payoff"],
+    readingTimeMinutes: 7,
+    relatedCalculator: {
+      title: "Loan Amortization Calculator",
+      href: "/loan-amortization-calculator",
+    },
+  },
+  {
+    slug: "how-mortgage-payments-are-calculated",
+    title: "How Is a Mortgage Payment Calculated?",
+    description:
+      "A plain-English breakdown of the mortgage payment formula, PITI, PMI, and how down payment, loan term, and interest rate each affect what you owe every month.",
+    publishedAt: "2026-04-23",
+    updatedAt: null,
+    category: "financial",
+    tags: ["mortgage", "home buying", "amortization", "PITI", "down payment"],
+    readingTimeMinutes: 7,
+    relatedCalculator: {
+      title: "Mortgage Calculator",
+      href: "/mortgage-calculator",
+    },
+  },
+  {
+    slug: "how-to-calculate-roi",
+    title: "How to Calculate ROI (and Why Simple ROI Misleads You)",
+    description:
+      "The ROI formula explained clearly, why annualized ROI and CAGR matter for comparing investments, what counts as a good return by asset class, and the five mistakes most investors make.",
+    publishedAt: "2026-04-23",
+    updatedAt: null,
+    category: "financial",
+    tags: ["ROI", "return on investment", "annualized return", "CAGR", "investing"],
+    readingTimeMinutes: 6,
+    relatedCalculator: {
+      title: "ROI Calculator",
+      href: "/roi-calculator",
+    },
+  },
 ];
 
 export function getCategoryLabel(category: BlogPost["category"]): string {
