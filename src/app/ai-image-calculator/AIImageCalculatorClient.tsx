@@ -10,6 +10,8 @@ import {
   formatImageCurrency,
 } from "@/data/image-models";
 import AdBanner from "@/components/AdBanner";
+import ShareButton from "@/components/ShareButton";
+import { trackEvent } from "@/lib/analytics";
 import FAQSection from "@/components/FAQSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
@@ -124,6 +126,7 @@ export default function AIImageCalculatorClient() {
           Compare costs for AI image generation across DALL-E, Stable Diffusion,
           Flux, Midjourney, and more. Pick your settings and see costs instantly.
         </p>
+        <div className="mt-3"><ShareButton /></div>
       </div>
 
       <AdBanner className="mb-8" />

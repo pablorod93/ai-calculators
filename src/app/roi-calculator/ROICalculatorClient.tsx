@@ -2,6 +2,8 @@
 
 import { useState, useMemo } from "react";
 import AdBanner from "@/components/AdBanner";
+import ShareButton from "@/components/ShareButton";
+import { trackEvent } from "@/lib/analytics";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import RelatedCalculators from "@/components/RelatedCalculators";
@@ -87,6 +89,7 @@ export default function ROICalculatorClient() {
           Calculate the return on investment for any project, campaign, or
           business decision. Compare up to 4 scenarios side by side.
         </p>
+        <div className="mt-3"><ShareButton /></div>
       </div>
 
       <AdBanner className="mb-8" />

@@ -6,6 +6,8 @@ import ProjectSelector from "@/components/ProjectSelector";
 import ProjectConfigurator from "@/components/ProjectConfigurator";
 import ProjectCostResults from "@/components/ProjectCostResults";
 import AdBanner from "@/components/AdBanner";
+import ShareButton from "@/components/ShareButton";
+import { trackEvent } from "@/lib/analytics";
 import RelatedCalculators from "@/components/RelatedCalculators";
 
 export default function ProjectEstimatorClient() {
@@ -43,6 +45,7 @@ export default function ProjectEstimatorClient() {
           Describe your project and we&apos;ll estimate how much it will cost to
           run with different AI models. No token math needed.
         </p>
+        <div className="mt-3"><ShareButton /></div>
       </div>
 
       <div className="space-y-8">

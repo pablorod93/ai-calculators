@@ -10,6 +10,8 @@ import {
   formatFineTuningCurrency,
 } from "@/data/fine-tuning-models";
 import AdBanner from "@/components/AdBanner";
+import ShareButton from "@/components/ShareButton";
+import { trackEvent } from "@/lib/analytics";
 import FAQSection from "@/components/FAQSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
@@ -129,6 +131,7 @@ export default function AIFineTuningCalculatorClient() {
           models. Compare training costs, LoRA vs full fine-tuning, and total
           cost of ownership.
         </p>
+        <div className="mt-3"><ShareButton /></div>
       </div>
 
       <AdBanner className="mb-8" />

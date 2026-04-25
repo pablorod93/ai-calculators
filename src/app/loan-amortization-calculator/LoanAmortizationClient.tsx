@@ -2,6 +2,9 @@
 
 import { useState, useMemo } from "react";
 import AdBanner from "@/components/AdBanner";
+import ShareButton from "@/components/ShareButton";
+import { trackEvent } from "@/lib/analytics";
+import { downloadCsv } from "@/lib/csv-export";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import RelatedCalculators from "@/components/RelatedCalculators";
@@ -131,6 +134,7 @@ export default function LoanAmortizationClient() {
           interest. Explore how extra payments can save you money and shorten
           your loan.
         </p>
+        <div className="mt-3"><ShareButton /></div>
       </div>
 
       <AdBanner className="mb-8" />
@@ -305,12 +309,27 @@ export default function LoanAmortizationClient() {
               <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
                 Amortization Schedule
               </h3>
-              <button
-                onClick={() => setShowMonthly(!showMonthly)}
-                className="text-xs text-blue-600 hover:text-blue-700 font-medium"
-              >
-                {showMonthly ? "Show Yearly" : "Show Monthly"}
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => {
+                    trackEvent("csv_downloaded", { calculator: "loan_amortization" });
+                    downloadCsv(
+                      "loan-amortization.csv",
+                      ["Month", "Payment", "Principal", "Interest", "Extra Payment", "Balance"],
+                      results.actualSchedule.map((row) => [row.month, row.payment.toFixed(2), row.principal.toFixed(2), row.interest.toFixed(2), row.extra.toFixed(2), row.endBalance.toFixed(2)])
+                    );
+                  }}
+                  className="text-xs text-blue-600 hover:text-blue-800 font-medium"
+                >
+                  Download CSV
+                </button>
+                <button
+                  onClick={() => setShowMonthly(!showMonthly)}
+                  className="text-xs text-blue-600 hover:text-blue-700 font-medium"
+                >
+                  {showMonthly ? "Show Yearly" : "Show Monthly"}
+                </button>
+              </div>
             </div>
 
             <div className="overflow-x-auto max-h-96 overflow-y-auto">

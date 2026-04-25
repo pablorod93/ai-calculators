@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { type AIModel, models } from "@/data/models";
 import ModelSelector from "@/components/ModelSelector";
 import TokenInput from "@/components/TokenInput";
@@ -12,6 +12,8 @@ import FAQSection from "@/components/FAQSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import RelatedCalculators from "@/components/RelatedCalculators";
+import ShareButton from "@/components/ShareButton";
+import { trackEvent } from "@/lib/analytics";
 
 const faqs = [
   {
@@ -46,10 +48,15 @@ export default function AICostCalculator() {
     models.find((m) => m.id === "gpt-4o")!,
     models.find((m) => m.id === "claude-sonnet-4")!,
   ]);
-  const [inputTokens, setInputTokens] = useState(1000);
-  const [outputTokens, setOutputTokens] = useState(500);
-  const [requestsPerDay, setRequestsPerDay] = useState(100);
-  const [useBatch, setUseBatch] = useState(false);
+  const [inputTokens, setInputTokens] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("it") ?? 1000 : 1000));
+  const [outputTokens, setOutputTokens] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("ot") ?? 500 : 500));
+  const [requestsPerDay, setRequestsPerDay] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("rpd") ?? 100 : 100));
+  const [useBatch, setUseBatch] = useState(() => typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("batch") === "1" : false);
+
+  useEffect(() => {
+    const params = new URLSearchParams({ it: String(inputTokens), ot: String(outputTokens), rpd: String(requestsPerDay), batch: useBatch ? "1" : "0" });
+    window.history.replaceState(null, "", `?${params.toString()}`);
+  }, [inputTokens, outputTokens, requestsPerDay, useBatch]);
 
   const toggleModel = useCallback(
     (model: AIModel) => {
@@ -97,6 +104,9 @@ export default function AICostCalculator() {
           Find out how much it costs to use AI models like ChatGPT, Claude, and
           Gemini. Pick your models, set your usage, and see the costs instantly.
         </p>
+        <div className="mt-3">
+          <ShareButton />
+        </div>
       </div>
 
       {/* Token explainer for beginners */}

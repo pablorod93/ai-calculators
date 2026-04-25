@@ -1,10 +1,13 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import AdBanner from "@/components/AdBanner";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import RelatedCalculators from "@/components/RelatedCalculators";
+import ShareButton from "@/components/ShareButton";
+import { trackEvent } from "@/lib/analytics";
+import { downloadCsv } from "@/lib/csv-export";
 
 function formatCurrency(n: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -33,13 +36,18 @@ interface AmortizationRow {
 }
 
 export default function MortgageCalculatorClient() {
-  const [homePrice, setHomePrice] = useState(350000);
-  const [downPaymentPct, setDownPaymentPct] = useState(20);
-  const [interestRate, setInterestRate] = useState(6.5);
-  const [loanTermYears, setLoanTermYears] = useState(30);
-  const [propertyTaxRate, setPropertyTaxRate] = useState(1.2);
-  const [homeInsurance, setHomeInsurance] = useState(1200);
+  const [homePrice, setHomePrice] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("hp") ?? 350000 : 350000));
+  const [downPaymentPct, setDownPaymentPct] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("dp") ?? 20 : 20));
+  const [interestRate, setInterestRate] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("r") ?? 6.5 : 6.5));
+  const [loanTermYears, setLoanTermYears] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("t") ?? 30 : 30));
+  const [propertyTaxRate, setPropertyTaxRate] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("tx") ?? 1.2 : 1.2));
+  const [homeInsurance, setHomeInsurance] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("ins") ?? 1200 : 1200));
   const [showAmortization, setShowAmortization] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams({ hp: String(homePrice), dp: String(downPaymentPct), r: String(interestRate), t: String(loanTermYears), tx: String(propertyTaxRate), ins: String(homeInsurance) });
+    window.history.replaceState(null, "", `?${params.toString()}`);
+  }, [homePrice, downPaymentPct, interestRate, loanTermYears, propertyTaxRate, homeInsurance]);
 
   const results = useMemo(() => {
     const downPayment = homePrice * (downPaymentPct / 100);
@@ -151,6 +159,9 @@ export default function MortgageCalculatorClient() {
           Calculate your monthly mortgage payment including principal, interest,
           taxes, insurance, and PMI. See the full amortization schedule.
         </p>
+        <div className="mt-3">
+          <ShareButton />
+        </div>
       </div>
 
       <AdBanner className="mb-8" />
@@ -319,10 +330,14 @@ export default function MortgageCalculatorClient() {
 
           {/* Amortization Schedule */}
           <div className="bg-white border border-gray-200 rounded-xl p-5">
-            <button
-              onClick={() => setShowAmortization(!showAmortization)}
-              className="w-full flex items-center justify-between"
-            >
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => {
+                  setShowAmortization(!showAmortization);
+                  if (!showAmortization) trackEvent("amortization_expanded", { calculator: "mortgage" });
+                }}
+                className="flex items-center gap-2 text-left"
+              >
               <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
                 Amortization Schedule
               </h3>
@@ -332,7 +347,30 @@ export default function MortgageCalculatorClient() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-            </button>
+              </button>
+              <button
+                onClick={() => {
+                  trackEvent("csv_downloaded", { calculator: "mortgage" });
+                  downloadCsv(
+                    "mortgage-amortization.csv",
+                    ["Year", "Annual Payment", "Principal", "Interest", "End Balance"],
+                    Array.from({ length: loanTermYears }, (_, y) => {
+                      const yearRows = results.schedule.slice(y * 12, (y + 1) * 12);
+                      return [
+                        `Year ${y + 1}`,
+                        yearRows.reduce((s, r) => s + r.payment, 0).toFixed(2),
+                        yearRows.reduce((s, r) => s + r.principal, 0).toFixed(2),
+                        yearRows.reduce((s, r) => s + r.interest, 0).toFixed(2),
+                        (yearRows[yearRows.length - 1]?.balance ?? 0).toFixed(2),
+                      ];
+                    })
+                  );
+                }}
+                className="text-xs text-blue-600 hover:text-blue-800 font-medium"
+              >
+                Download CSV
+              </button>
+            </div>
 
             {showAmortization && (
               <div className="mt-4 overflow-x-auto max-h-96 overflow-y-auto">

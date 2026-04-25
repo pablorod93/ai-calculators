@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import AdBanner from "@/components/AdBanner";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import RelatedCalculators from "@/components/RelatedCalculators";
+import ShareButton from "@/components/ShareButton";
+import { trackEvent } from "@/lib/analytics";
 
 function fmt(n: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -26,13 +28,18 @@ interface YearData {
 }
 
 export default function CompoundInterestClient() {
-  const [principal, setPrincipal] = useState(10000);
-  const [monthlyContribution, setMonthlyContribution] = useState(500);
-  const [annualRate, setAnnualRate] = useState(7);
-  const [years, setYears] = useState(30);
-  const [compoundingFrequency, setCompoundingFrequency] = useState(12); // monthly
-  const [inflationRate, setInflationRate] = useState(3);
+  const [principal, setPrincipal] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("p") ?? 10000 : 10000));
+  const [monthlyContribution, setMonthlyContribution] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("mc") ?? 500 : 500));
+  const [annualRate, setAnnualRate] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("r") ?? 7 : 7));
+  const [years, setYears] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("y") ?? 30 : 30));
+  const [compoundingFrequency, setCompoundingFrequency] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("cf") ?? 12 : 12));
+  const [inflationRate, setInflationRate] = useState(() => Number(typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("inf") ?? 3 : 3));
   const [showTable, setShowTable] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams({ p: String(principal), mc: String(monthlyContribution), r: String(annualRate), y: String(years), cf: String(compoundingFrequency), inf: String(inflationRate) });
+    window.history.replaceState(null, "", `?${params.toString()}`);
+  }, [principal, monthlyContribution, annualRate, years, compoundingFrequency, inflationRate]);
 
   const results = useMemo(() => {
     const schedule: YearData[] = [];
@@ -110,6 +117,9 @@ export default function CompoundInterestClient() {
           interest and regular contributions. Adjust for inflation to see real
           purchasing power.
         </p>
+        <div className="mt-3">
+          <ShareButton />
+        </div>
       </div>
 
       <AdBanner className="mb-8" />
