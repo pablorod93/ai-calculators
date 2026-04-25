@@ -2,6 +2,9 @@
 
 import { useState, useMemo } from "react";
 import AdBanner from "@/components/AdBanner";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FAQSection from "@/components/FAQSection";
+import RelatedCalculators from "@/components/RelatedCalculators";
 
 function fmt(n: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -115,6 +118,7 @@ export default function BusinessAcquisitionClient() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Business Acquisition Calculator", href: "/business-acquisition-calculator" }]} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           Business Acquisition Calculator
@@ -379,6 +383,21 @@ export default function BusinessAcquisitionClient() {
       </div>
 
       <AdBanner className="mt-8" />
+      <div className="mt-10 space-y-8">
+        <FAQSection faqs={[
+          { question: "What is DSCR and why does it matter for SBA loans?", answer: "DSCR (Debt Service Coverage Ratio) measures whether a business generates enough cash flow to cover its loan payments. DSCR = Annual Net Operating Income / Annual Debt Service. Most SBA lenders require a minimum DSCR of 1.25, meaning the business earns 25% more than needed to cover payments. Below 1.0 means the business can't cover its debt from operations alone." },
+          { question: "What SBA loan programs are available for buying a business?", answer: "The SBA 7(a) loan is the most common for business acquisitions — up to $5M, 10-year terms, and rates typically Prime + 2.75%. The SBA 504 loan is used for real estate and equipment. Both require as little as 10% down. Non-US citizens may face restrictions on SBA financing; check with an SBA-approved lender." },
+          { question: "How is a small business typically valued?", answer: "Most small businesses are valued using a multiple of SDE (Seller's Discretionary Earnings — profit before owner's compensation, taxes, depreciation, and amortization). Typical multiples are 2–4x SDE for businesses under $1M in earnings. Service businesses with recurring revenue or strong brand often command higher multiples." },
+          { question: "What is a good DSCR ratio for a business acquisition?", answer: "Lenders want 1.25+ DSCR. A DSCR of 1.5 or higher gives you a comfortable safety margin. Below 1.0 means the business won't cover its own loan payments from operations. If your DSCR is under 1.25, consider negotiating a lower purchase price, larger down payment, or seller financing." },
+          { question: "What's a typical down payment for buying a business with an SBA 7(a) loan?", answer: "SBA 7(a) loans typically require 10%–20% down for business acquisitions. With a $500,000 purchase price, you'd need $50,000–$100,000 in equity injection. Seller financing (where the seller holds a note for part of the price) can reduce your required down payment in some cases." },
+          { question: "What is cash-on-cash return in business acquisitions?", answer: "Cash-on-cash return measures annual cash flow relative to your initial cash investment. If you put $100,000 down and the business generates $25,000/year after all expenses and debt service, your cash-on-cash return is 25%. A target of 15–25%+ is typical for small business acquisitions." },
+        ]} />
+        <RelatedCalculators items={[
+          { title: "ROI Calculator", href: "/roi-calculator", description: "Calculate the return on investment for any purchase or project." },
+          { title: "Loan Amortization Calculator", href: "/loan-amortization-calculator", description: "Visualize your SBA loan payments and payoff timeline." },
+          { title: "Compound Interest Calculator", href: "/compound-interest-calculator", description: "Model how your equity grows over time." },
+        ]} />
+      </div>
     </div>
   );
 }

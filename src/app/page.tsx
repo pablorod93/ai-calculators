@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AdBanner from "@/components/AdBanner";
+import { blogPosts, getCategoryLabel, getCategoryColor } from "@/data/blog-posts";
 
 const calculators = [
   {
@@ -201,35 +202,27 @@ export default function Home() {
       {/* From the Blog */}
       <div className="mt-16">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">From the Blog</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Link
-            href="/blog/how-to-estimate-ai-api-costs"
-            className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-lg transition-all group"
-          >
-            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
-              Guides
-            </span>
-            <h3 className="text-lg font-semibold text-gray-900 mt-3 mb-2 group-hover:text-blue-700 transition-colors">
-              How to Estimate AI API Costs for Your Project
-            </h3>
-            <p className="text-gray-600 text-sm">
-              Token counting, usage patterns, and cost optimization strategies to budget your AI spend.
-            </p>
-          </Link>
-          <Link
-            href="/blog/when-to-refinance-your-mortgage"
-            className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-lg transition-all group"
-          >
-            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-green-100 text-green-700">
-              Financial
-            </span>
-            <h3 className="text-lg font-semibold text-gray-900 mt-3 mb-2 group-hover:text-blue-700 transition-colors">
-              When Should You Refinance Your Mortgage?
-            </h3>
-            <p className="text-gray-600 text-sm">
-              The 1% rule, breakeven analysis, and a decision checklist for refinancing.
-            </p>
-          </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...blogPosts]
+            .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+            .map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-lg transition-all group"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${getCategoryColor(post.category)}`}>
+                    {getCategoryLabel(post.category)}
+                  </span>
+                  <span className="text-xs text-gray-500">{post.readingTimeMinutes} min read</span>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mt-1 mb-2 group-hover:text-blue-700 transition-colors">
+                  {post.title}
+                </h3>
+                <p className="text-gray-600 text-sm">{post.description}</p>
+              </Link>
+            ))}
         </div>
       </div>
     </div>

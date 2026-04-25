@@ -11,6 +11,7 @@ import AdBanner from "@/components/AdBanner";
 import FAQSection from "@/components/FAQSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
+import RelatedCalculators from "@/components/RelatedCalculators";
 
 const faqs = [
   {
@@ -182,6 +183,11 @@ export default function AICostCalculator() {
       </div>
 
       <AdBanner className="mt-8" />
+      <RelatedCalculators items={[
+        { title: "AI Project Cost Estimator", href: "/ai-project-estimator", description: "Estimate costs by project type without doing token math." },
+        { title: "GPU Cost Calculator", href: "/gpu-cost-calculator", description: "Compare cloud GPU rental costs across AWS, GCP, and more." },
+        { title: "AI Fine-Tuning Cost Calculator", href: "/ai-fine-tuning-calculator", description: "Estimate fine-tuning costs for GPT-4o, Llama, and Mistral." },
+      ]} />
     </div>
   );
 }

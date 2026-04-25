@@ -2,6 +2,9 @@
 
 import { useState, useMemo } from "react";
 import AdBanner from "@/components/AdBanner";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FAQSection from "@/components/FAQSection";
+import RelatedCalculators from "@/components/RelatedCalculators";
 
 function fmt(n: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -118,6 +121,7 @@ export default function LoanAmortizationClient() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Loan Amortization Calculator", href: "/loan-amortization-calculator" }]} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           Loan Amortization Calculator
@@ -356,6 +360,20 @@ export default function LoanAmortizationClient() {
       </div>
 
       <AdBanner className="mt-8" />
+      <div className="mt-10 space-y-8">
+        <FAQSection faqs={[
+          { question: "What is loan amortization?", answer: "Amortization is the process of spreading loan payments over time. Each payment covers both interest and principal. Early payments are mostly interest; later payments are mostly principal. An amortization schedule shows the exact breakdown for every payment over the life of your loan." },
+          { question: "Why do I pay more interest at the start of my loan?", answer: "Because interest is calculated on the remaining balance. Early on, your balance is highest, so more of each payment goes to interest. As you pay down principal, the balance drops and interest charges shrink. This is why the first years of a mortgage feel like you're barely making a dent." },
+          { question: "How do extra payments reduce my loan term?", answer: "Extra principal payments reduce your balance faster, which means less interest accumulates each month, and more of subsequent payments go to principal. Even $100–$200 extra per month can cut years off a 30-year mortgage. Use this calculator's extra payment field to see the exact savings for your loan." },
+          { question: "What happens if I make biweekly payments?", answer: "Making half-payments every two weeks results in 26 half-payments per year — equivalent to 13 full monthly payments instead of 12. That one extra payment per year can shave 4–6 years off a 30-year mortgage and save tens of thousands in interest." },
+          { question: "What's the difference between a fixed and variable rate loan?", answer: "A fixed-rate loan has the same interest rate for the entire term — your monthly payment never changes. A variable-rate loan has a rate that adjusts periodically based on market rates, meaning your payment can go up or down. This calculator models fixed-rate loans." },
+        ]} />
+        <RelatedCalculators items={[
+          { title: "Mortgage Calculator", href: "/mortgage-calculator", description: "Calculate your full monthly mortgage payment including taxes and insurance." },
+          { title: "Mortgage Refinance Calculator", href: "/mortgage-refinance-calculator", description: "See if refinancing to a lower rate makes sense." },
+          { title: "Compound Interest Calculator", href: "/compound-interest-calculator", description: "See how money grows when you save instead of borrow." },
+        ]} />
+      </div>
     </div>
   );
 }

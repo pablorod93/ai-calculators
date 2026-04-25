@@ -12,6 +12,7 @@ import AdBanner from "@/components/AdBanner";
 import FAQSection from "@/components/FAQSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
+import RelatedCalculators from "@/components/RelatedCalculators";
 
 const faqs = [
   {
@@ -586,6 +587,11 @@ export default function GPUCostCalculatorClient() {
       </div>
 
       <AdBanner className="mt-8" />
+      <RelatedCalculators items={[
+        { title: "AI Fine-Tuning Cost Calculator", href: "/ai-fine-tuning-calculator", description: "Estimate fine-tuning costs including GPU time and inference." },
+        { title: "AI Token Cost Calculator", href: "/ai-cost-calculator", description: "Compare managed API costs vs. self-hosting on GPU." },
+        { title: "AI Project Cost Estimator", href: "/ai-project-estimator", description: "Get a full cost estimate for your AI project." },
+      ]} />
     </div>
   );
 }

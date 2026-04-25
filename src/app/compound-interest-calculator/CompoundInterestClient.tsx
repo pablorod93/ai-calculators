@@ -2,6 +2,9 @@
 
 import { useState, useMemo } from "react";
 import AdBanner from "@/components/AdBanner";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FAQSection from "@/components/FAQSection";
+import RelatedCalculators from "@/components/RelatedCalculators";
 
 function fmt(n: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -97,6 +100,7 @@ export default function CompoundInterestClient() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Compound Interest Calculator", href: "/compound-interest-calculator" }]} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           Compound Interest Calculator
@@ -320,6 +324,21 @@ export default function CompoundInterestClient() {
       </div>
 
       <AdBanner className="mt-8" />
+      <div className="mt-10 space-y-8">
+        <FAQSection faqs={[
+          { question: "What is compound interest?", answer: "Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. Unlike simple interest (which only earns on the principal), compound interest causes your money to grow exponentially. Einstein reportedly called it the 'eighth wonder of the world.'" },
+          { question: "How does compounding frequency affect growth?", answer: "More frequent compounding = more growth. $10,000 at 8% for 10 years: annual compounding → $21,589; monthly compounding → $22,196; daily compounding → $22,253. The difference grows larger with higher rates and longer time horizons. Most savings accounts and investments compound monthly or daily." },
+          { question: "What is the Rule of 72?", answer: "The Rule of 72 is a shortcut to estimate how long it takes to double your money. Divide 72 by your annual interest rate: at 6%/year, your money doubles in about 12 years (72 ÷ 6 = 12); at 9%, in 8 years. It's a quick mental math check — use this calculator for exact figures." },
+          { question: "How do regular contributions affect compound growth?", answer: "Regular contributions dramatically accelerate growth. Adding $500/month to $10,000 at 7% for 20 years grows to ~$280,000 — versus just ~$40,000 with no contributions. The earlier you start contributing, the more powerful the compounding effect. This calculator models both the initial principal and regular additions." },
+          { question: "What's the difference between APY and APR?", answer: "APR (Annual Percentage Rate) is the stated interest rate. APY (Annual Percentage Yield) accounts for compounding frequency and reflects what you actually earn. A 6% APR compounded monthly gives an APY of about 6.17%. When comparing savings accounts, always compare APY — it's the true return." },
+          { question: "How does inflation reduce real returns?", answer: "Inflation erodes purchasing power. If you earn 7%/year but inflation is 3%, your real return is about 4%. Enable the inflation adjustment in this calculator to see both the nominal (before inflation) and real (after inflation) value of your savings over time." },
+        ]} />
+        <RelatedCalculators items={[
+          { title: "ROI Calculator", href: "/roi-calculator", description: "Compare the ROI of different investment options." },
+          { title: "Loan Amortization Calculator", href: "/loan-amortization-calculator", description: "See how debt costs you in interest over time." },
+          { title: "Mortgage Calculator", href: "/mortgage-calculator", description: "Calculate how a mortgage fits into your financial plan." },
+        ]} />
+      </div>
     </div>
   );
 }

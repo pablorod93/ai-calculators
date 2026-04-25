@@ -2,6 +2,9 @@
 
 import { useState, useMemo } from "react";
 import AdBanner from "@/components/AdBanner";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FAQSection from "@/components/FAQSection";
+import RelatedCalculators from "@/components/RelatedCalculators";
 
 function formatCurrency(n: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -161,6 +164,7 @@ export default function MortgageRefinanceClient() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Mortgage Refinance Calculator", href: "/mortgage-refinance-calculator" }]} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           Mortgage Refinance Calculator
@@ -633,6 +637,21 @@ export default function MortgageRefinanceClient() {
       </div>
 
       <AdBanner className="mt-8" />
+      <div className="mt-10 space-y-8">
+        <FAQSection faqs={[
+          { question: "What is the breakeven point for refinancing?", answer: "The breakeven point is when your cumulative monthly savings equal your closing costs. For example, if refinancing costs $4,000 and saves you $200/month, you break even in 20 months. This calculator shows your exact breakeven timeline based on your inputs." },
+          { question: "Is the 1% rule for refinancing still valid?", answer: "The traditional rule says refinancing makes sense if you can lower your rate by at least 1%. While still a useful starting point, a more precise approach is to calculate your actual breakeven period and compare it to how long you plan to stay in the home. Even a 0.5% reduction can make sense if closing costs are low." },
+          { question: "Does refinancing restart my loan term?", answer: "Yes — if you refinance a 30-year mortgage after 10 years into a new 30-year loan, you extend your total loan period. This lowers monthly payments but increases total interest paid. Refinancing into a shorter term (like 15 years) avoids this and saves more on total interest." },
+          { question: "What closing costs should I expect when refinancing?", answer: "Typical refinancing closing costs are 2%–5% of the loan amount, covering origination fees, appraisal, title insurance, and prepaid taxes/insurance. On a $300,000 loan that's $6,000–$15,000. Some lenders offer 'no-closing-cost' refinancing where fees are rolled into the rate." },
+          { question: "When does it NOT make sense to refinance?", answer: "Refinancing may not be worth it if: you plan to move before the breakeven period, you're far into your loan (mostly paying principal anyway), closing costs are very high, or you'd extend your term significantly. This calculator helps you evaluate your specific scenario." },
+          { question: "How does cash-out refinancing work?", answer: "Cash-out refinancing replaces your mortgage with a larger loan and you receive the difference in cash. For example, if your home is worth $400,000 and you owe $200,000, you could refinance for $280,000 and receive $80,000 cash. This increases your loan balance and monthly payments." },
+        ]} />
+        <RelatedCalculators items={[
+          { title: "Mortgage Calculator", href: "/mortgage-calculator", description: "Calculate your current or new mortgage payment including taxes and insurance." },
+          { title: "Loan Amortization Calculator", href: "/loan-amortization-calculator", description: "See how extra payments could eliminate your loan faster." },
+          { title: "ROI Calculator", href: "/roi-calculator", description: "Calculate the return on any financial decision." },
+        ]} />
+      </div>
     </div>
   );
 }

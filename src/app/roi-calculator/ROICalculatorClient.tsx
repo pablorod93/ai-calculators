@@ -2,6 +2,9 @@
 
 import { useState, useMemo } from "react";
 import AdBanner from "@/components/AdBanner";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FAQSection from "@/components/FAQSection";
+import RelatedCalculators from "@/components/RelatedCalculators";
 
 function formatCurrency(n: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -77,6 +80,7 @@ export default function ROICalculatorClient() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "ROI Calculator", href: "/roi-calculator" }]} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">ROI Calculator</h1>
         <p className="text-gray-600">
@@ -255,6 +259,20 @@ export default function ROICalculatorClient() {
       </div>
 
       <AdBanner className="mt-8" />
+      <div className="mt-10 space-y-8">
+        <FAQSection faqs={[
+          { question: "What is a good ROI percentage?", answer: "A 'good' ROI depends heavily on context. Stock market investments average ~10%/year. Real estate typically returns 8%–12% annually. Business investments vary widely. For comparison purposes, use the annualized ROI this calculator provides, not just the simple percentage, especially for multi-year investments." },
+          { question: "What's the difference between simple ROI and annualized ROI?", answer: "Simple ROI = (Net Profit / Cost) × 100. Annualized ROI adjusts for the time period using compound interest math, making investments of different durations comparable. A 50% ROI over 5 years is only about 8.4%/year annualized — very different from 50% in one year." },
+          { question: "How do I compare investments with different time horizons?", answer: "Use annualized ROI (also called CAGR — Compound Annual Growth Rate). This calculator shows annualized ROI automatically. You can also compare up to 4 scenarios side by side to find the best investment for your situation." },
+          { question: "What's the difference between ROI and IRR?", answer: "ROI is a simple ratio measuring return relative to cost. IRR (Internal Rate of Return) accounts for the timing of cash flows — important when a project has multiple inflows/outflows over time. For simple investments with one upfront cost and one final value, ROI and IRR will give similar results." },
+          { question: "Does this calculator account for inflation?", answer: "This calculator shows nominal ROI (before inflation). To get real ROI, subtract the inflation rate from your annualized ROI. For example, a 9% annualized ROI with 3% inflation gives you a real return of about 6%. For long-term investments, real ROI is the more meaningful number." },
+        ]} />
+        <RelatedCalculators items={[
+          { title: "Business Acquisition Calculator", href: "/business-acquisition-calculator", description: "Analyze the ROI and cash flow of buying a business." },
+          { title: "Compound Interest Calculator", href: "/compound-interest-calculator", description: "See how your returns compound over time with regular contributions." },
+          { title: "Loan Amortization Calculator", href: "/loan-amortization-calculator", description: "Understand the true cost of financing an investment." },
+        ]} />
+      </div>
     </div>
   );
 }

@@ -13,6 +13,7 @@ import AdBanner from "@/components/AdBanner";
 import FAQSection from "@/components/FAQSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
+import RelatedCalculators from "@/components/RelatedCalculators";
 
 const faqs = [
   {
@@ -483,6 +484,11 @@ export default function AIImageCalculatorClient() {
       </div>
 
       <AdBanner className="mt-8" />
+      <RelatedCalculators items={[
+        { title: "AI Token Cost Calculator", href: "/ai-cost-calculator", description: "Compare API costs for text models across 30+ LLMs." },
+        { title: "AI Fine-Tuning Cost Calculator", href: "/ai-fine-tuning-calculator", description: "Estimate costs for fine-tuning your own image or text model." },
+        { title: "GPU Cost Calculator", href: "/gpu-cost-calculator", description: "Compare GPU rental prices for running your own image generation." },
+      ]} />
     </div>
   );
 }

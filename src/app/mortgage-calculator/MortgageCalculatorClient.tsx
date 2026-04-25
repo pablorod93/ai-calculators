@@ -2,6 +2,9 @@
 
 import { useState, useMemo } from "react";
 import AdBanner from "@/components/AdBanner";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FAQSection from "@/components/FAQSection";
+import RelatedCalculators from "@/components/RelatedCalculators";
 
 function formatCurrency(n: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -104,8 +107,42 @@ export default function MortgageCalculatorClient() {
       : []),
   ];
 
+  const faqs = [
+    {
+      question: "How is my monthly mortgage payment calculated?",
+      answer: "Your monthly payment consists of principal and interest (P&I), property taxes, homeowners insurance, and PMI if applicable. The P&I portion is calculated using the standard amortization formula: M = P[r(1+r)^n]/[(1+r)^n-1], where P is the loan amount, r is the monthly interest rate, and n is the number of payments.",
+    },
+    {
+      question: "What is PMI and when do I need it?",
+      answer: "Private Mortgage Insurance (PMI) is required when your down payment is less than 20% of the home's purchase price. It protects the lender if you default. PMI typically costs 0.5%–1.5% of the loan amount annually and can be removed once you reach 20% equity.",
+    },
+    {
+      question: "How does a 15-year vs. 30-year mortgage compare?",
+      answer: "A 15-year mortgage has higher monthly payments but you pay significantly less total interest and build equity faster. A 30-year mortgage has lower monthly payments, giving you more cash flow flexibility, but you pay roughly 2–3x more in total interest over the life of the loan.",
+    },
+    {
+      question: "How does the interest rate affect my total cost?",
+      answer: "Even a small rate difference has a big impact. On a $350,000 loan, going from 6% to 7% adds about $75,000 in total interest over 30 years. Use this calculator to compare scenarios — just adjust the interest rate slider.",
+    },
+    {
+      question: "What property tax rate should I use?",
+      answer: "The average US property tax rate is about 1.1%, but it varies widely by state — from under 0.5% in Hawaii and Alabama to over 2% in New Jersey and Illinois. Check your county assessor's website or recent property tax bills for the most accurate rate for your area.",
+    },
+    {
+      question: "How much house can I afford?",
+      answer: "A common rule is that your total monthly housing costs (PITI) should not exceed 28% of your gross monthly income, and total debt payments should stay under 36% (the 28/36 rule). Lenders also look at your credit score, savings, and debt-to-income ratio.",
+    },
+  ];
+
+  const relatedCalculators = [
+    { title: "Mortgage Refinance Calculator", href: "/mortgage-refinance-calculator", description: "See if refinancing saves you money and when you break even." },
+    { title: "Loan Amortization Calculator", href: "/loan-amortization-calculator", description: "Visualize how extra payments accelerate your payoff." },
+    { title: "Compound Interest Calculator", href: "/compound-interest-calculator", description: "Model how your savings or down payment can grow over time." },
+  ];
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Mortgage Calculator", href: "/mortgage-calculator" }]} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           Mortgage Calculator
@@ -336,6 +373,10 @@ export default function MortgageCalculatorClient() {
       </div>
 
       <AdBanner className="mt-8" />
+      <div className="mt-10 space-y-8">
+        <FAQSection faqs={faqs} />
+        <RelatedCalculators items={relatedCalculators} />
+      </div>
     </div>
   );
 }

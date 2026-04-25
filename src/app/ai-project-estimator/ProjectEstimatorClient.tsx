@@ -6,6 +6,7 @@ import ProjectSelector from "@/components/ProjectSelector";
 import ProjectConfigurator from "@/components/ProjectConfigurator";
 import ProjectCostResults from "@/components/ProjectCostResults";
 import AdBanner from "@/components/AdBanner";
+import RelatedCalculators from "@/components/RelatedCalculators";
 
 export default function ProjectEstimatorClient() {
   const [selectedTemplate, setSelectedTemplate] =
@@ -78,6 +79,11 @@ export default function ProjectEstimatorClient() {
         )}
 
         <AdBanner />
+        <RelatedCalculators items={[
+          { title: "AI Token Cost Calculator", href: "/ai-cost-calculator", description: "Dig into per-token costs across 30+ models." },
+          { title: "GPU Cost Calculator", href: "/gpu-cost-calculator", description: "Compare cloud GPU costs if you're self-hosting." },
+          { title: "AI Fine-Tuning Cost Calculator", href: "/ai-fine-tuning-calculator", description: "Estimate fine-tuning costs for a custom model." },
+        ]} />
       </div>
     </div>
   );
