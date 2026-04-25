@@ -316,7 +316,7 @@ export default function LoanAmortizationClient() {
                     downloadCsv(
                       "loan-amortization.csv",
                       ["Month", "Payment", "Principal", "Interest", "Extra Payment", "Balance"],
-                      results.actualSchedule.map((row) => [row.month, row.payment.toFixed(2), row.principal.toFixed(2), row.interest.toFixed(2), row.extra.toFixed(2), row.endBalance.toFixed(2)])
+                      results.actualSchedule.map((row) => [row.month, row.payment.toFixed(2), row.principal.toFixed(2), row.interest.toFixed(2), row.extraPayment.toFixed(2), row.balance.toFixed(2)])
                     );
                   }}
                   className="text-xs text-blue-600 hover:text-blue-800 font-medium"
