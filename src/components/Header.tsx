@@ -13,6 +13,8 @@ const navGroups: NavGroup[] = [
     label: "AI Calculators",
     links: [
       { href: "/ai-cost-calculator", label: "AI Token Costs" },
+      { href: "/chatgpt-cost-calculator", label: "ChatGPT Monthly Cost" },
+      { href: "/ai-roi-calculator", label: "AI ROI Calculator" },
       { href: "/ai-project-estimator", label: "AI Project Estimator" },
       { href: "/ai-image-calculator", label: "Image Generation" },
       { href: "/ai-fine-tuning-calculator", label: "Fine-Tuning Costs" },
@@ -25,6 +27,7 @@ const navGroups: NavGroup[] = [
       { href: "/mortgage-calculator", label: "Mortgage" },
       { href: "/mortgage-refinance-calculator", label: "Refinance" },
       { href: "/roi-calculator", label: "ROI" },
+      { href: "/business-valuation-calculator", label: "Business Valuation" },
       { href: "/business-acquisition-calculator", label: "Business Acquisition" },
       { href: "/compound-interest-calculator", label: "Compound Interest" },
       { href: "/loan-amortization-calculator", label: "Loan Amortization" },
